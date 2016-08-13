@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>maven.java</groupId>
+    <artifactId>grails-maven</artifactId>
+    <version>0.1</version>
+
+    <dependencies>
+        <!-- GRAILS -->
+
+        <dependency>
+            <groupId>org.grails</groupId>
+            <artifactId>grails-core</artifactId>
+            <version>2.5.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails</groupId>
+            <artifactId>grails-maven-plugin</artifactId>
+            <version>2.4.6</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <sourceDirectory>grails-app</sourceDirectory>
+
+        <pluginManagement/>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF8</encoding>
+                </configuration>
+                <executions>
+                    <!-- don't compile  -->
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*</exclude>
+                            </excludes>
+                        </configuration>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.grails</groupId>
+                <artifactId>grails-maven-plugin</artifactId>
+                <version>2.4.6</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>maven-compile</goal>
+                        </goals>
+                        <phase>compile</phase>
+                    </execution>
+                    <execution>
+                        <id>grails-maven-plugin-war</id>
+                        <goals>
+                            <goal>war</goal>
+                        </goals>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <grailsVersion>2.5.0</grailsVersion>
+                    <fork>true</fork>
+                    <forkDebug>false</forkDebug>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <repositories>
+        <repository>
+            <id>grails</id>
+            <name>grailsCentral</name>
+            <url>http://repo.grails.org/grails/core</url>
+        </repository>
+
+        <repository>
+            <id>grails-plugins</id>
+            <name>grailsPlugins</name>
+            <url>http://repo.grails.org/grails/plugins</url>
+        </repository>
+
+        <repository>
+            <id>grails-repo</id>
+            <name>grailsRepo</name>
+            <url>http://repo.grails.org/grails/repo/</url>
+        </repository>
+
+        <repository>
+            <id>grails-plugins-snapshots</id>
+            <name>grails-maven-plugins</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>grails-maven-plugins</id>
+            <name>grails-maven-plugins</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>
